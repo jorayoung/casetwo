@@ -84,12 +84,6 @@ class Roulette {
             this.items[i].value = 0;
         }
 
-        var skins = JSON.parse(localStorage.getItem("skins"))
-        if (skins.indexOf(lastItem) == -1) {
-            skins.push(lastItem)
-            localStorage.setItem("skins", JSON.stringify(skins))
-        }
-
         window.requestAnimationFrame(() => this.update());
     }
 
@@ -127,6 +121,11 @@ class Roulette {
 
                 if (this.level == this.LENGTH - 3) {
                     item.lastChild.src = this.lastItem;
+                    var skins = JSON.parse(localStorage.getItem("skins"))
+                    if (skins.indexOf(this.lastItem) == -1) {
+                        skins.push(this.lastItem)
+                        localStorage.setItem("skins", JSON.stringify(skins))
+                    }
                 }
             }
         }
